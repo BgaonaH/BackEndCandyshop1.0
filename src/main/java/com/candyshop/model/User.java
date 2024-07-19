@@ -52,7 +52,7 @@ public class User {
 	
 	@OneToMany(mappedBy="user",cascade= CascadeType.ALL)
 	@JsonIgnore
-	private List<Review>rivews = new ArrayList<>();
+	private List<Review>reviews = new ArrayList<>();
 	
 	private LocalDateTime createAt;
 	
@@ -72,12 +72,12 @@ public class User {
 	 * @param address
 	 * @param paymentInformation
 	 * @param ratings
-	 * @param rivews
+	 * @param reviews
 	 * @param createAt
 	 */
 	public User(Long id, String firstName, String lastName, String password, String email, String role, String mobile,
 			List<Address> address, List<PaymentInformation> paymentInformation, List<Rating> ratings,
-			List<Review> rivews, LocalDateTime createAt) {
+			List<Review> reviews, LocalDateTime createAt) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -89,7 +89,7 @@ public class User {
 		this.address = address;
 		this.paymentInformation = paymentInformation;
 		this.ratings = ratings;
-		this.rivews = rivews;
+		this.reviews = reviews;
 		this.createAt = createAt;
 	}
 
@@ -174,12 +174,12 @@ public class User {
 		this.ratings = ratings;
 	}
 
-	public List<Review> getRivews() {
-		return rivews;
+	public List<Review> getReviews() {
+		return reviews;
 	}
 
-	public void setRivews(List<Review> rivews) {
-		this.rivews = rivews;
+	public void setRivews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 
 	public LocalDateTime getCreateAt() {

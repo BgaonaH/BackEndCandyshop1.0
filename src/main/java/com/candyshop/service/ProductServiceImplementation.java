@@ -35,7 +35,7 @@ private CategoryRepository categoryRepository;
 		
 		if(topLevel==null) {
 			Category topLavelCategory=new Category();
-			topLavelCategory.setName(null);
+			topLavelCategory.setName(req.getTopLavelCategory());
 			topLavelCategory.setLevel(1);
 			
 			topLevel=categoryRepository.save(topLavelCategory);
@@ -45,7 +45,8 @@ private CategoryRepository categoryRepository;
 		
 		if(secondLevel==null) {
 			Category secondLavelCategory=new Category();
-			secondLavelCategory.setName(null);
+			secondLavelCategory.setName(req.getSecondLavelCategory());
+			secondLavelCategory.setParentCategory(topLevel);
 			secondLavelCategory.setLevel(2);
 			
 			secondLevel=categoryRepository.save(secondLavelCategory);
@@ -56,7 +57,8 @@ private CategoryRepository categoryRepository;
 		
 		if(thirdLevel==null) {
 			Category thirdLavelCategory=new Category();
-			thirdLavelCategory.setName(null);
+			thirdLavelCategory.setName(req.getThirdLavelCategory());
+			thirdLavelCategory.setParentCategory(secondLevel);
 			thirdLavelCategory.setLevel(3);
 			
 			thirdLevel=categoryRepository.save(thirdLavelCategory);

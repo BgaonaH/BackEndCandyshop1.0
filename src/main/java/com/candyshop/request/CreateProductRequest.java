@@ -7,7 +7,7 @@ public class CreateProductRequest {
 	
 	private int price;
 	
-	private int discountedPrice;
+	private int discountPrice;
 	
 	private int discointPersent;
 	
@@ -50,11 +50,11 @@ public class CreateProductRequest {
 	}
 
 	public int getDiscountedPrice() {
-		return discountedPrice;
+		return discountPrice;
 	}
 
 	public void setDiscountedPrice(int discountedPrice) {
-		this.discountedPrice = discountedPrice;
+		this.discountPrice = discountedPrice;
 	}
 
 	public int getDiscointPersent() {

@@ -22,28 +22,28 @@ public class Product {
 	private Long id;	
 	
 	
-	private double title;
+	private String title;
 	
 	
-	private double description;
+	private String description;
 	
 	
-	private double price;
+	private int price;
 	
 	@Column(name = "discount_price")
-	private double discountPrice;
+	private int discountPrice;
 	
 	@Column(name = "discount_persent")
-	private double discountPersent;
+	private int discountPersent;
 	
 	@Column(name = "quantity")
-	private double quantity;
+	private int quantity;
 	
 	@Column(name = "brand")
-	private double brand;
+	private String brand;
 	
 	@Column(name = "image_url")
-	private double imageUrl;
+	private String imageUrl;
 	
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL,orphanRemoval = true)
@@ -53,7 +53,7 @@ public class Product {
 	private List<Review>reviews=new ArrayList<>();
 	
 	@Column(name = "num_ratings")
-	private double numRatings;
+	private int numRatings;
 	
 	@ManyToOne()
 	@JoinColumn(name="category_id")
@@ -61,10 +61,10 @@ public class Product {
 	
 	private LocalDateTime createdAt;
 	
-	public Product(){
-		
+	
+	public Product() {
+		 
 	}
-
 	/**
 	 * @param id
 	 * @param title
@@ -81,9 +81,10 @@ public class Product {
 	 * @param category
 	 * @param createdAt
 	 */
-	public Product(Long id, double title, double description, double price, double discountPrice,
-			double discountPersent, double quantity, double brand, double imageUrl, List<Rating> ratings,
-			List<Review> reviews, double numRatings, Category category, LocalDateTime createdAt) {
+
+	public Product(Long id, String title, String description, int price, int discountPrice, int discountPersent,
+			int quantity, String brand, String imageUrl, List<Rating> ratings, List<Review> reviews, int numRatings,
+			Category category, LocalDateTime createdAt) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -101,120 +102,151 @@ public class Product {
 		this.createdAt = createdAt;
 	}
 
+
 	public Long getId() {
 		return id;
 	}
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public double getTitle() {
+
+	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(double title) {
+
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public double getDescription() {
+
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(double description) {
+
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public double getPrice() {
+
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
-	public double getDiscountPrice() {
+
+	public int getDiscountPrice() {
 		return discountPrice;
 	}
 
-	public void setDiscountPrice(double discountPrice) {
+
+	public void setDiscountPrice(int discountPrice) {
 		this.discountPrice = discountPrice;
 	}
 
-	public double getDiscountPersent() {
+
+	public int getDiscountPersent() {
 		return discountPersent;
 	}
 
-	public void setDiscountPersent(double discountPersent) {
+
+	public void setDiscountPersent(int discountPersent) {
 		this.discountPersent = discountPersent;
 	}
 
-	public double getQuantity() {
+
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(double quantity) {
+
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public double getBrand() {
+
+	public String getBrand() {
 		return brand;
 	}
 
-	public void setBrand(double brand) {
+
+	public void setBrand(String brand) {
 		this.brand = brand;
 	}
 
-	public double getImageUrl() {
+
+	public String getImageUrl() {
 		return imageUrl;
 	}
 
-	public void setImageUrl(double imageUrl) {
+
+	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+
 
 	public List<Rating> getRatings() {
 		return ratings;
 	}
 
+
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
+
 
 	public List<Review> getReviews() {
 		return reviews;
 	}
 
+
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
 
-	public double getNumRatings() {
+
+	public int getNumRatings() {
 		return numRatings;
 	}
 
-	public void setNumRatings(double numRatings) {
+
+	public void setNumRatings(int numRatings) {
 		this.numRatings = numRatings;
 	}
+
 
 	public Category getCategory() {
 		return category;
 	}
 
+
 	public void setCategory(Category category) {
 		this.category = category;
 	}
 
+
 	public LocalDateTime getCreatedAt() {
-		
-		
 		return createdAt;
 	}
+
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
+	 
 	
+	
+	
+	
+
 	
 	
 

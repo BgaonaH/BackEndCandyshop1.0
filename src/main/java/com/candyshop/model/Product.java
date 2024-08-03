@@ -33,8 +33,8 @@ public class Product {
 	@Column(name = "discount_price")
 	private int discountPrice;
 	
-	@Column(name = "discount_persent")
-	private int discountPersent;
+	@Column(name = "discount_percent")
+	private int discountPercent;
 	
 	@Column(name = "quantity")
 	private int quantity;
@@ -71,7 +71,7 @@ public class Product {
 	 * @param description
 	 * @param price
 	 * @param discountPrice
-	 * @param discountPersent
+	 * @param discountPercent
 	 * @param quantity
 	 * @param brand
 	 * @param imageUrl
@@ -82,7 +82,7 @@ public class Product {
 	 * @param createdAt
 	 */
 
-	public Product(Long id, String title, String description, int price, int discountPrice, int discountPersent,
+	public Product(Long id, String title, String description, int price, int discountPrice, int discountPercent,
 			int quantity, String brand, String imageUrl, List<Rating> ratings, List<Review> reviews, int numRatings,
 			Category category, LocalDateTime createdAt) {
 		super();
@@ -91,7 +91,7 @@ public class Product {
 		this.description = description;
 		this.price = price;
 		this.discountPrice = discountPrice;
-		this.discountPersent = discountPersent;
+		this.discountPercent = discountPercent;
 		this.quantity = quantity;
 		this.brand = brand;
 		this.imageUrl = imageUrl;
@@ -153,13 +153,13 @@ public class Product {
 	}
 
 
-	public int getDiscountPersent() {
-		return discountPersent;
+	public int getDiscountPercent() {
+		return discountPercent;
 	}
 
 
-	public void setDiscountPersent(int discountPersent) {
-		this.discountPersent = discountPersent;
+	public void setDiscountPercent(int discountPercent) {
+		this.discountPercent = discountPercent;
 	}
 
 

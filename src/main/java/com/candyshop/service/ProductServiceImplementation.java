@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -73,7 +74,7 @@ private CategoryRepository categoryRepository;
 		product.setTitle(req.getTitle());
 		product.setDescription(req.getDescription());
 		product.setDiscountPrice(req.getDiscountedPrice());
-		product.setDiscountPersent(req.getDiscointPersent());
+		product.setDiscountPercent(req.getDiscointPercent());
 		product.setImageUrl(req.getImageUrl());
 		product.setBrand(req.getBrand());
 		product.setPrice(req.getPrice());
@@ -90,10 +91,10 @@ private CategoryRepository categoryRepository;
 		
 	}
 
-	@Override
+	@Override /** debemos revisar este serivicio*/
 	public String deleteProduct(Long productId) throws ProductException {
 		Product product=findProductById(productId);
-		
+		/*product.getSizes().clear();*/
 		productRepository.delete(product);
 		return "Product deleted Succesfully";
 	}
@@ -138,10 +139,19 @@ private CategoryRepository categoryRepository;
 			if(stock.equals("in_stock")){
 				products = products.stream().filter(p -> p.getQuantity()>0).collect(Collectors.toList());
 			}
+			else if (stock.equals("out_stock")){
+				products=products.stream().filter(p -> p.getQuantity()<1).collect(Collectors.toList());
+			}
 		}
+	int starindex=(int) pageable.getOffset();
+	int endindex=Math.min(starindex + pageable.getPageSize(),products.size() );
+	
+	List<Product>pageContent=products.subList(starindex, endindex);
+	
+	Page<Product>filteredProducts= new PageImpl<>(pageContent,pageable, products.size());
 	return null;
 
-	}
+	 }
 	}
 		
 	

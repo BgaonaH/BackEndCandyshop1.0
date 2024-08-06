@@ -5,7 +5,7 @@ import com.candyshop.model.User;
 
 public interface UserService {
 
-	public User findUserByid(long userid) throws UserException;
+	public User findUserById(long userid) throws UserException;
 	
 	public User findUserProfileByJwt(String jwt) throws UserException;
 }

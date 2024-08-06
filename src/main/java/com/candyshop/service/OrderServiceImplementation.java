@@ -8,18 +8,19 @@ import com.candyshop.exception.OrderException;
 import com.candyshop.model.Address;
 import com.candyshop.model.Order;
 import com.candyshop.model.User;
+import com.candyshop.repository.CartRepository;
 
 @Service
 public class OrderServiceImplementation implements OrderService {
 
 	private CartRepository cartRepository;
-	private CartItemService cartItemService;
+	private CartService cartService;
 	private ProductService productService;
 	
 	public OrderServiceImplementation(CartRepository cartrepository,
-			CartItemService cartItemService,
+			CartService cartService,
 			ProductService productService) {
-		this.cartItemService=cartItemService;
+		this.cartService=cartService;
 		this.cartRepository=cartRepository;
 		this.productService=productService;
 	}

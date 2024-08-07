@@ -77,13 +77,13 @@ public class CartItemServiceImplementation implements CartItemService {
 	}
 
 	@Override
-	public CartItem findCartItemById(Long caritemid) throws CartItemException {
-		Optional<CartItem>opt= cartItemRepository.findById(caritemid);
+	public CartItem findCartItemById(Long cartItemId) throws CartItemException {
+		Optional<CartItem>opt= cartItemRepository.findById(cartItemId);
 		
 		if(opt.isPresent()) {
 			return opt.get();
 		}
-		throw new CartItemException("Cart item not found");
+		throw new CartItemException("Cart item not found with id"+cartItemId);
 	}
 
 }

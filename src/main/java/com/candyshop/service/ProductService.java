@@ -22,7 +22,12 @@ public interface ProductService {
 	
 	public List<Product>findProductByCategory(String category);
 	
-	public Page<Product>getAllProduct(String category, Integer minPrice, Integer maxPrice,
+	public List<Product> searchProduct(String query);
+	
+	public Page<Product>getAllProducts(String category, Integer minPrice, Integer maxPrice,
 			Integer maxDiscount, Integer minDiscount, String sort, String stock, Integer pageNumber, Integer pageSize);
 	
+	public List<Product> recentlyAddedProduct();
+
+	public List<Product> getAllProducts();
 }

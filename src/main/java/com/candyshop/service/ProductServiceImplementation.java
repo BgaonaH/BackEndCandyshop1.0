@@ -128,7 +128,7 @@ private CategoryRepository categoryRepository;
 	}
 
 	@Override
-	public Page<Product> getAllProduct(String category, Integer minPrice, Integer maxPrice, Integer maxDiscount,
+	public Page<Product> getAllProducts(String category, Integer minPrice, Integer maxPrice, Integer maxDiscount,
 			Integer minDiscount, String sort, String stock, Integer pageNumber, Integer pageSize) {
 		
 		Pageable pageable = PageRequest.of(pageNumber, pageSize);
@@ -152,6 +152,29 @@ private CategoryRepository categoryRepository;
 	return null;
 
 	 }
+
+
+	@Override
+	public List<Product> searchProduct(String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public List<Product> recentlyAddedProduct() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Product> getAllProducts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	}
 		
 	

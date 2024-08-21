@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.candyshop.user.domain.OrderStatus;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -14,82 +16,89 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "orders")
 public class Order {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
 
-	@Column(name="order_id")
-	private String orderId;
-	
-	@ManyToOne
-	private User user;
-	
-	@OneToMany(mappedBy="order",cascade = CascadeType.ALL)
-	private List<OrderItem>orderItems=new ArrayList<>();
-	
-	private LocalDateTime orderDate; 
-	
-	private LocalDateTime deliveryDate;
-	
-	
-	
-	@OneToOne
-	private Address shippingAddress;
-	
-	@Embedded
-	private PaymentDetails paymentDetails = new PaymentDetails();
-	
-	private double totalPrice;
-	
-	private Integer totalDiscountedPrice;
-	
-	private Integer discounte;
-	
-	private String orderStatus;
-	
-	private int totalItem;
-	
-	private LocalDateTime createAt;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	
+    @Column(name="order_id")
+    private String orderId;
+  
+    @ManyToOne
+    private User user;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+    private LocalDateTime orderDate;
+
+    private LocalDateTime deliveryDate;
+
+    @OneToOne
+    private Address shippingAddress;
+
+    @Embedded
+    private PaymentDetails paymentDetails=new PaymentDetails();
+
+    private double totalPrice;
+    
+    private Integer totalDiscountedPrice;
+    
+    private Integer discounte;
+
+    private OrderStatus orderStatus;
+    
+    private int totalItem;
+    
+    private LocalDateTime createdAt;
+
+    public Order() {
+		
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public int getTotalItem() {
+		return totalItem;
+	}
+
+	public void setTotalItem(int totalItem) {
+		this.totalItem = totalItem;
+	}
+
+	public Integer getDiscounte() {
+		return discounte;
+	}
+
+	public void setDiscounte(Integer discounte) {
+		this.discounte = discounte;
+	}
+
+	public Integer getTotalDiscountedPrice() {
+		return totalDiscountedPrice;
+	}
+
+	public void setTotalDiscountedPrice(Integer totalDiscountedPrice) {
+		this.totalDiscountedPrice = totalDiscountedPrice;
+	}
+
 	public Long getId() {
 		return id;
 	}
 
-	public Order(Long id, String orderId, User user, List<OrderItem> orderItems, LocalDateTime orderDate,
-			LocalDateTime deliveryDate, Address shippingAddress, PaymentDetails paymentDetails, double totalPrice,
-			Integer totalDiscountedPrice, Integer discounte, String orderStatus, int totalItem,
-			LocalDateTime createAt) {
-		super();
-		this.id = id;
-		this.orderId = orderId;
-		this.user = user;
-		this.orderItems = orderItems;
-		this.orderDate = orderDate;
-		this.deliveryDate = deliveryDate;
-		this.shippingAddress = shippingAddress;
-		this.paymentDetails = paymentDetails;
-		this.totalPrice = totalPrice;
-		this.totalDiscountedPrice = totalDiscountedPrice;
-		this.discounte = discounte;
-		this.orderStatus = orderStatus;
-		this.totalItem = totalItem;
-		this.createAt = createAt;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
 	}
 
 	public User getUser() {
@@ -148,45 +157,22 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
-	public Integer getTotalDiscountedPrice() {
-		return totalDiscountedPrice;
-	}
-
-	public void setTotalDiscountedPrice(Integer totalDiscountedPrice) {
-		this.totalDiscountedPrice = totalDiscountedPrice;
-	}
-
-	public Integer getDiscounte() {
-		return discounte;
-	}
-
-	public void setDiscounte(Integer discounte) {
-		this.discounte = discounte;
-	}
-
-	public String getOrderStatus() {
+	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
 
-	public void setOrderStatus(String orderStatus) {
+	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
 	}
 
-	public int getTotalItem() {
-		return totalItem;
+	public String getOrderId() {
+		return orderId;
 	}
 
-	public void setTotalItem(int totalItem) {
-		this.totalItem = totalItem;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
-	public LocalDateTime getCreateAt() {
-		return createAt;
-	}
-
-	public void setCreateAt(LocalDateTime createAt) {
-		this.createAt = createAt;
-	}
-	
-	
+    
+    
 }

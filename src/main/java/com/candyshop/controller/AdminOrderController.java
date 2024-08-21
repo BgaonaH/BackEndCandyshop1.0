@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -72,18 +73,13 @@ public class AdminOrderController {
 		
 	}
 	
-	@PutMapping("/{orderId}/delete")
-	public ResponseEntity<Order> DeleteOrderHandler(@PathVariable Long orderId,
-			@RequestHeader("Authorization")String jwt) throws OrderException{
-		
-		orderService=orderService.deleteOrder(orderId);
-		
-		ApiResponse res= new ApiResponse();
-		res.setMessage("Orden borrada exitosamente");
-		res.setStatus(true);
-		return new ResponseEntity<>(res,HttpStatus.OK);
-		
-		
+	@DeleteMapping("/{orderId}/delete")
+	public ResponseEntity<ApiResponse> deleteOrderHandler(@PathVariable Long orderId,
+			@RequestHeader("Authorization") String jwt) throws OrderException{
+		orderService.deleteOrder(orderId);
+		ApiResponse res=new ApiResponse("Order Deleted Successfully",true);
+		System.out.println("delete method working....");
+		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
 	}
 
 }

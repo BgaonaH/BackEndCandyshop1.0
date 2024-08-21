@@ -53,7 +53,6 @@ public class AdminProductController {
 		
 		
 	}
-	
 	@PutMapping("/{productId}/update")
 	public ResponseEntity <Product> updateProduct(@RequestBody Product req, @PathVariable Long productId) 
 			throws ProductException{

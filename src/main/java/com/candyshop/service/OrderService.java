@@ -25,4 +25,7 @@ public Order createOrder(User user, Address shippingAdress);
 	
 	public Order canceledOrder(Long orderId) throws OrderException;
 	
+	public List<Order>getAllOrders();
+	
+	public void deleteOrder(Long orderId) throws OrderException;
 }

@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "first_name")
@@ -48,7 +48,7 @@ public class User {
 
 	private String mobile;
 	
-	@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="user",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Address> address = new ArrayList<>();
 	
 	@Embedded
@@ -57,34 +57,15 @@ public class User {
 	private List<PaymentInformation> paymentInformation = new ArrayList<>();
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="user",cascade= CascadeType.ALL)
+	@OneToMany(mappedBy="user",cascade= CascadeType.ALL, orphanRemoval = true)
 	private List<Rating>ratings=new ArrayList<>();
 	
-	@OneToMany(mappedBy="user",cascade= CascadeType.ALL)
+	@OneToMany(mappedBy="user",cascade= CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<Review>reviews = new ArrayList<>();
 	
 	private LocalDateTime createAt;
 	
-	public User() {
-		// TODO Auto-generated constructor stub
-	}
-	
-
-	/**
-	 * @param id
-	 * @param firstName
-	 * @param lastName
-	 * @param password
-	 * @param email
-	 * @param role
-	 * @param mobile
-	 * @param address
-	 * @param paymentInformation
-	 * @param ratings
-	 * @param reviews
-	 * @param createAt
-	 */
 
 
 	public Long getId() {

@@ -1,8 +1,10 @@
-package com.candyshop.model;
+package com.candyshop.modal;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.candyshop.modal.OrderItem;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,19 +38,6 @@ public class OrderItem {
 	
 	public OrderItem() {
 		
-	}
-
-	public OrderItem(Long id, Order order, Product product, int quantity, Integer price, Integer discountedPrice,
-			Long userId, LocalDateTime deliveryDate) {
-		super();
-		this.id = id;
-		this.order = order;
-		this.product = product;
-		this.quantity = quantity;
-		this.price = price;
-		this.discountedPrice = discountedPrice;
-		this.userId = userId;
-		this.deliveryDate = deliveryDate;
 	}
 
 	public Long getId() {
@@ -115,4 +104,26 @@ public class OrderItem {
 		this.deliveryDate = deliveryDate;
 	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, order, price, product, quantity, userId);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj)
+	        return true;
+	    if (obj == null)
+	        return false;
+	    if (getClass() != obj.getClass())
+	        return false;
+	    OrderItem other = (OrderItem) obj;
+	    return Objects.equals(id, other.id) 
+	            && Objects.equals(order, other.order) 
+	            && Objects.equals(price, other.price)
+	            && Objects.equals(product, other.product) 
+	            && quantity == other.quantity
+	            && Objects.equals(userId, other.userId);
+	}
+
 }

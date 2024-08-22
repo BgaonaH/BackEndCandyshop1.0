@@ -1,4 +1,4 @@
-package com.candyshop.model;
+package com.candyshop.modal;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +12,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-
 public class Review {
 
 	@Id 
@@ -92,10 +91,6 @@ public class Review {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
-	
-	
-	
-	
 	
 		
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.candyshop.config.JwtProvider;
 import com.candyshop.exception.UserException;
-import com.candyshop.model.User;
+import com.candyshop.modal.User;
 import com.candyshop.repository.UserRepository;
 import com.candyshop.request.LoginRequest;
 import com.candyshop.response.AuthResponse;

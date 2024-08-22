@@ -3,8 +3,8 @@ package com.candyshop.service;
 import org.springframework.stereotype.Service;
 
 import com.candyshop.exception.ProductException;
-import com.candyshop.model.Cart;
-import com.candyshop.model.User;
+import com.candyshop.modal.Cart;
+import com.candyshop.modal.User;
 import com.candyshop.repository.CartRepository;
 import com.candyshop.request.AddItemRequest;
 

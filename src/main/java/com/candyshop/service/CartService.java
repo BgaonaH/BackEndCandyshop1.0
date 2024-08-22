@@ -1,8 +1,8 @@
 package com.candyshop.service;
 
 import com.candyshop.exception.ProductException;
-import com.candyshop.model.Cart;
-import com.candyshop.model.User;
+import com.candyshop.modal.Cart;
+import com.candyshop.modal.User;
 import com.candyshop.request.AddItemRequest;
 
 public interface CartService {

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.candyshop.config.JwtProvider;
 import com.candyshop.exception.UserException;
-import com.candyshop.model.User;
+import com.candyshop.modal.User;
 import com.candyshop.repository.UserRepository;
 
 

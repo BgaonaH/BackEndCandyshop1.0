@@ -1,4 +1,4 @@
-package com.candyshop.model;
+package com.candyshop.modal;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,22 +29,6 @@ public class Category {
 	
 	public Category(){
 		// TODO Auto-generated constructor stub
-	}
-
-	
-	
-	/**
-	 * @param id
-	 * @param name
-	 * @param parentCategory
-	 * @param level
-	 */
-	public Category(Long id, @NotNull @Size(max = 50) String name, Category parentCategory, int level) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.parentCategory = parentCategory;
-		this.level = level;
 	}
 
 

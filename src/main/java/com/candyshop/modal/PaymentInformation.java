@@ -1,4 +1,4 @@
-package com.candyshop.model;
+package com.candyshop.modal;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package com.candyshop.model;
+package com.candyshop.modal;
 
 import java.util.HashSet;
 import java.util.Set;

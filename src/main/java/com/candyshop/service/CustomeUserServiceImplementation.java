@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.candyshop.model.User;
+import com.candyshop.modal.User;
 import com.candyshop.repository.UserRepository;
 
 @Service

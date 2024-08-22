@@ -1,7 +1,7 @@
 package com.candyshop.service;
 
 import com.candyshop.exception.UserException;
-import com.candyshop.model.User;
+import com.candyshop.modal.User;
 
 public interface UserService {
 

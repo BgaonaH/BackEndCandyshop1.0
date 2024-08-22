@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.candyshop.exception.CartItemException;
 import com.candyshop.exception.UserException;
-import com.candyshop.model.Cart;
-import com.candyshop.model.CartItem;
-import com.candyshop.model.Product;
-import com.candyshop.model.User;
+import com.candyshop.modal.Cart;
+import com.candyshop.modal.CartItem;
+import com.candyshop.modal.Product;
+import com.candyshop.modal.User;
 import com.candyshop.repository.CartItemRepository;
 import com.candyshop.repository.CartRepository;
 
@@ -32,7 +32,7 @@ public class CartItemServiceImplementation implements CartItemService {
 	public CartItem createCartItem(CartItem cartItem) {
 		cartItem.setQuantity(1);
 		cartItem.setPrice(cartItem.getProduct().getPrice()*cartItem.getQuantity());
-		cartItem.setDiscountPrice(cartItem.getProduct().getDiscountPrice()*cartItem.getQuantity());
+		cartItem.setDiscountedPrice(cartItem.getProduct().getDiscountedPrice()*cartItem.getQuantity());
 		
 		CartItem createdCartItem=cartItemRepository.save(cartItem);
 		
@@ -48,7 +48,7 @@ public class CartItemServiceImplementation implements CartItemService {
 		if(user.getId().equals(userId)){
 			item.setQuantity(cartItem.getQuantity());
 			item.setPrice(item.getQuantity()*item.getProduct().getPrice());
-			item.setDiscountPrice(item.getProduct().getDiscountPrice()*item.getQuantity());
+			item.setDiscountedPrice(item.getProduct().getDiscountedPrice()*item.getQuantity());
 		}
 		return cartItemRepository.save(item);
 	}

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.candyshop.exception.OrderException;
-import com.candyshop.model.Address;
-import com.candyshop.model.Order;
-import com.candyshop.model.User;
+import com.candyshop.modal.Address;
+import com.candyshop.modal.Order;
+import com.candyshop.modal.User;
 import com.candyshop.repository.CartRepository;
 
 @Service

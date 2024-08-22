@@ -1,4 +1,4 @@
-package com.candyshop.model;
+package com.candyshop.modal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

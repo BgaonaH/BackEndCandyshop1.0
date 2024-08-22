@@ -3,9 +3,9 @@ package com.candyshop.service;
 import java.util.List;
 
 import com.candyshop.exception.OrderException;
-import com.candyshop.model.Address;
-import com.candyshop.model.Order;
-import com.candyshop.model.User;
+import com.candyshop.modal.Address;
+import com.candyshop.modal.Order;
+import com.candyshop.modal.User;
 
 public interface OrderService {
 

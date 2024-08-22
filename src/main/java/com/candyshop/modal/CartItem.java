@@ -1,4 +1,4 @@
-package com.candyshop.model;
+package com.candyshop.modal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,7 +26,7 @@ public class CartItem {
 	
 	private Integer price;
 	
-	private Integer discountPrice;
+	private Integer discountedPrice;
 	
 	private Long userId;
 
@@ -34,6 +34,18 @@ public class CartItem {
 		
 	};
 	
+	public CartItem(Long id, Cart cart, Product product, int quantity, Integer price, Integer discountedPrice,
+			Long userId) {
+		super();
+		this.id = id;
+		this.cart = cart;
+		this.product = product;
+		this.quantity = quantity;
+		this.price = price;
+		this.discountedPrice = discountedPrice;
+		this.userId = userId;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -74,12 +86,12 @@ public class CartItem {
 		this.price = price;
 	}
 
-	public Integer getDiscountPrice() {
-		return discountPrice;
+	public Integer getDiscountedPrice() {
+		return discountedPrice;
 	}
 
-	public void setDiscountPrice(Integer discountPrice) {
-		this.discountPrice = discountPrice;
+	public void setDiscountedPrice(Integer discountPrice) {
+		this.discountedPrice = discountPrice;
 	}
 
 	public Long getUserId() {

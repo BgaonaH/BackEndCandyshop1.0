@@ -64,7 +64,7 @@ public class User {
 	@JsonIgnore
 	private List<Review>reviews = new ArrayList<>();
 	
-	private LocalDateTime createAt;
+	private LocalDateTime creatAt;
 	
 
 
@@ -156,12 +156,12 @@ public class User {
 		this.reviews = reviews;
 	}
 
-	public LocalDateTime getCreateAt() {
-		return createAt;
+	public LocalDateTime getCreatAt() {
+		return creatAt;
 	}
 
-	public void setCreateAt(LocalDateTime createAt) {
-		this.createAt = createAt;
+	public void setCreatAt(LocalDateTime creatAt) {
+		this.creatAt = creatAt;
 	}
 
 }

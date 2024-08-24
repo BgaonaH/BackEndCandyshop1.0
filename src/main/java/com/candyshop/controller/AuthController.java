@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.candyshop.config.JwtProvider;
+import com.candyshop.config.JwtTokenProvider;
 import com.candyshop.exception.UserException;
 import com.candyshop.modal.User;
 import com.candyshop.repository.UserRepository;
@@ -26,18 +26,18 @@ import com.candyshop.service.CustomeUserServiceImplementation;
 
 public class AuthController {
 	private UserRepository userRepository;
-	private JwtProvider jwtProvider;
+	private JwtTokenProvider jwtTokenProvider;
 	private PasswordEncoder passwordEncoder;
 	private CustomeUserServiceImplementation customeUserService;
 	
 	
 	public AuthController(UserRepository userRepository, CustomeUserServiceImplementation customeUserService,
 			PasswordEncoder passwordEncoder,
-			JwtProvider jwtProvider) {
+			JwtTokenProvider jwtTokenProvider) {
 		this.userRepository=userRepository;
 		this.customeUserService=customeUserService;
 		this.passwordEncoder=passwordEncoder;
-		this.jwtProvider=jwtProvider;
+		this.jwtTokenProvider=jwtTokenProvider;
 	}
 	
 	@PostMapping("/signup")
@@ -63,7 +63,7 @@ public class AuthController {
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
-		String token =jwtProvider.generateToken(authentication);
+		String token =jwtTokenProvider.generateToken(authentication);
 		
 		AuthResponse authResponse = new AuthResponse();
 		authResponse.setJwt(token);
@@ -80,7 +80,7 @@ public class AuthController {
 		Authentication authentication= authenticate(username,password);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
-		String token = jwtProvider.generateToken(authentication);
+		String token = jwtTokenProvider.generateToken(authentication);
 		
 		return null;
 		

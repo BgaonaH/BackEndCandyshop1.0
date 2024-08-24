@@ -1,10 +1,11 @@
 package com.candyshop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.candyshop.config.JwtProvider;
+import com.candyshop.config.JwtTokenProvider;
 import com.candyshop.exception.UserException;
 import com.candyshop.modal.User;
 import com.candyshop.repository.UserRepository;
@@ -14,12 +15,12 @@ import com.candyshop.repository.UserRepository;
 public class UserServiceImplementation implements UserService{
 	
 	private UserRepository userRepository;
-	private JwtProvider jwtProvider;
+	private JwtTokenProvider jwtTokenProvider;
 	
-	public UserServiceImplementation(UserRepository userRepository,JwtProvider jwtprovider) {
+	public UserServiceImplementation(UserRepository userRepository,JwtTokenProvider jwtprovider) {
 		
 		this.userRepository= userRepository;
-		this.jwtProvider= jwtprovider;
+		this.jwtTokenProvider= jwtprovider;
 	}
 	
 	
@@ -36,7 +37,7 @@ public class UserServiceImplementation implements UserService{
 
 	@Override
 	public User findUserProfileByJwt(String jwt) throws UserException {
-		String email= jwtProvider.getEmailFromToken(jwt);
+		String email= jwtTokenProvider.getEmailFromToken(jwt);
 		
 		User user = userRepository.findByEmail(email);
 		
@@ -45,5 +46,14 @@ public class UserServiceImplementation implements UserService{
 		}
 		return user;
 	}
+//	@Override
+//	public List<User> findAllCustomers() {
+//		return null;
+//	}
 
+	@Override
+	public List<User> findAllUsers() {
+		// TODO Auto-generated method stub
+		return userRepository.findAllByOrderByCreatAtDesc();
+	}
 }

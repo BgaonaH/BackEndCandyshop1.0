@@ -22,7 +22,8 @@ import com.candyshop.service.ProductService;
 @RestController
 @RequestMapping("/api/admin/products")
 public class AdminProductController {
-private ProductService productService;
+
+	private ProductService productService;
 	
 	public AdminProductController(ProductService productService) {
 		this.productService = productService;

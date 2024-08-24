@@ -21,6 +21,8 @@ import com.candyshop.request.LoginRequest;
 import com.candyshop.response.AuthResponse;
 import com.candyshop.service.CustomeUserServiceImplementation;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 
@@ -41,7 +43,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/signup")
-	public ResponseEntity<AuthResponse>createUserHandler(@RequestBody User user) throws UserException{
+	public ResponseEntity<AuthResponse>createUserHandler(@Valid @RequestBody User user) throws UserException{
 
 		String email= user.getEmail();
 		String password= user.getPassword();
@@ -65,10 +67,9 @@ public class AuthController {
 		
 		String token =jwtTokenProvider.generateToken(authentication);
 		
-		AuthResponse authResponse = new AuthResponse();
-		authResponse.setJwt(token);
-		authResponse.setMessage("Registro Exitoso");
-		return new ResponseEntity<AuthResponse>(authResponse,HttpStatus.CREATED);
+		AuthResponse authResponse = new AuthResponse(token, true);
+		
+		return new ResponseEntity<AuthResponse>(authResponse,HttpStatus.OK);
 			
 			}
 	@PostMapping("/signin")
@@ -77,24 +78,35 @@ public class AuthController {
 		String username=loginRequest.getEmail();
 		String password=loginRequest.getPassword();
 		
+		System.out.println(username +" ----- "+password);
+		
 		Authentication authentication= authenticate(username,password);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		String token = jwtTokenProvider.generateToken(authentication);
+		AuthResponse authResponse= new AuthResponse();
 		
-		return null;
+		authResponse.setStatus(true);
+		authResponse.setJwt(token);
+		
+        return new ResponseEntity<AuthResponse>(authResponse,HttpStatus.OK);
+		
 		
 	}
 	private Authentication authenticate(String username, String password) {
 		UserDetails userDetails = customeUserService.loadUserByUsername(username);
 		
+		 System.out.println("sign in userDetails - "+userDetails);
+		
 		if(userDetails==null) {
+			System.out.println("sign in userDetails - null " + userDetails);
 			throw new BadCredentialsException("Username invalido.. ");
 		}
 		
-		if(passwordEncoder.matches(password, userDetails.getPassword())){
-			throw new BadCredentialsException("password invalido.. ");
-		}
+		  if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+	        	System.out.println("sign in userDetails - password not match " + userDetails);
+	            throw new BadCredentialsException("Invalid username or password");
+	        }
 		return new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
 }
 

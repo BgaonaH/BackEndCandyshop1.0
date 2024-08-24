@@ -2,21 +2,20 @@ package com.candyshop.request;
 
 public class AddItemRequest {
 	
-	private Long productid;
+	private Long productId;
 	private int quantity;
 	private Integer price;
 	
 	public AddItemRequest() {
-		
-		
+			
 	}
 
-	public Long getProductid() {
-		return productid;
+	public Long getProductId() {
+		return productId;
 	}
 
-	public void setProductid(Long productid) {
-		this.productid = productid;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
 	public int getQuantity() {

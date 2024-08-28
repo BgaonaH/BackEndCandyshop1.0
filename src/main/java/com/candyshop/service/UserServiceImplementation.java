@@ -10,42 +10,45 @@ import com.candyshop.exception.UserException;
 import com.candyshop.modal.User;
 import com.candyshop.repository.UserRepository;
 
-
 @Service
-public class UserServiceImplementation implements UserService{
+public class UserServiceImplementation implements UserService {
 	
 	private UserRepository userRepository;
 	private JwtTokenProvider jwtTokenProvider;
 	
-	public UserServiceImplementation(UserRepository userRepository,JwtTokenProvider jwtprovider) {
+	public UserServiceImplementation(UserRepository userRepository,JwtTokenProvider jwtTokenProvider) {
 		
-		this.userRepository= userRepository;
-		this.jwtTokenProvider= jwtprovider;
-	}
-	
-	
-	@Override
-	public User findUserById(long userid) throws UserException {
-		Optional<User>user=userRepository.findById(userid);
-		if(user.isPresent()) {
-			return user.get();
-		}
-		
-		throw new UserException("user not foind with id :"+userid);
+		this.userRepository=userRepository;
+		this.jwtTokenProvider=jwtTokenProvider;
 		
 	}
 
 	@Override
-	public User findUserProfileByJwt(String jwt) throws UserException {
-		String email= jwtTokenProvider.getEmailFromToken(jwt);
+	public User findUserById(Long userId) throws UserException {
+		Optional<User> user=userRepository.findById(userId);
 		
-		User user = userRepository.findByEmail(email);
+		if(user.isPresent()){
+			return user.get();
+		}
+		throw new UserException("user not found with id "+userId);
+	}
+
+	@Override
+	public User findUserProfileByJwt(String jwt) throws UserException {
+		System.out.println("user service");
+		String email=jwtTokenProvider.getEmailFromJwtToken(jwt);
+		
+		System.out.println("email"+email);
+		
+		User user=userRepository.findByEmail(email);
 		
 		if(user==null) {
-			throw new UserException("user not found with email"+ email);
+			throw new UserException("user not exist with email "+email);
 		}
+		System.out.println("email user"+user.getEmail());
 		return user;
 	}
+
 //	@Override
 //	public List<User> findAllCustomers() {
 //		return null;
@@ -54,6 +57,7 @@ public class UserServiceImplementation implements UserService{
 	@Override
 	public List<User> findAllUsers() {
 		// TODO Auto-generated method stub
-		return userRepository.findAllByOrderByCreatAtDesc();
+		return userRepository.findAllByOrderByCreatedAtDesc();
 	}
+
 }

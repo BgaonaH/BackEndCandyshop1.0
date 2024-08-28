@@ -1,9 +1,8 @@
 package com.candyshop.modal;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.candyshop.user.domain.OrderStatus;
 
 import jakarta.persistence.CascadeType;
@@ -13,15 +12,23 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "orders")
 public class Order {
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -56,8 +63,40 @@ public class Order {
     
     private LocalDateTime createdAt;
 
-	public Order() {
+    public Order() {
 		
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public int getTotalItem() {
+		return totalItem;
+	}
+
+	public void setTotalItem(int totalItem) {
+		this.totalItem = totalItem;
+	}
+
+	public Integer getDiscounte() {
+		return discounte;
+	}
+
+	public void setDiscounte(Integer discounte) {
+		this.discounte = discounte;
+	}
+
+	public Integer getTotalDiscountedPrice() {
+		return totalDiscountedPrice;
+	}
+
+	public void setTotalDiscountedPrice(Integer totalDiscountedPrice) {
+		this.totalDiscountedPrice = totalDiscountedPrice;
 	}
 
 	public Long getId() {
@@ -66,14 +105,6 @@ public class Order {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
 	}
 
 	public User getUser() {
@@ -132,22 +163,6 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
-	public Integer getTotalDiscountedPrice() {
-		return totalDiscountedPrice;
-	}
-
-	public void setTotalDiscountedPrice(Integer totalDiscountedPrice) {
-		this.totalDiscountedPrice = totalDiscountedPrice;
-	}
-
-	public Integer getDiscounte() {
-		return discounte;
-	}
-
-	public void setDiscounte(Integer discounte) {
-		this.discounte = discounte;
-	}
-
 	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
@@ -156,22 +171,15 @@ public class Order {
 		this.orderStatus = orderStatus;
 	}
 
-	public int getTotalItem() {
-		return totalItem;
+	public String getOrderId() {
+		return orderId;
 	}
 
-	public void setTotalItem(int totalItem) {
-		this.totalItem = totalItem;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-	
-	
-	
+    // constructors, getters and setters
+    
+    
 }

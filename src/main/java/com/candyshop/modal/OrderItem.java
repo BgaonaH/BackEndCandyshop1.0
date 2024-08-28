@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.candyshop.modal.OrderItem;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class OrderItem {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -25,6 +24,8 @@ public class OrderItem {
 	
 	@ManyToOne
 	private Product product;
+	
+	private String size;
 	
 	private int quantity;
 	
@@ -37,7 +38,23 @@ public class OrderItem {
 	private LocalDateTime deliveryDate;
 	
 	public OrderItem() {
-		
+		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getDiscountedPrice() {
+		return discountedPrice;
+	}
+
+	public void setDiscountedPrice(Integer discountedPrice) {
+		this.discountedPrice = discountedPrice;
+	}
+
+	public LocalDateTime getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(LocalDateTime deliveryDate) {
+		this.deliveryDate = deliveryDate;
 	}
 
 	public Long getId() {
@@ -64,6 +81,14 @@ public class OrderItem {
 		this.product = product;
 	}
 
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -80,14 +105,6 @@ public class OrderItem {
 		this.price = price;
 	}
 
-	public Integer getDiscountedPrice() {
-		return discountedPrice;
-	}
-
-	public void setDiscountedPrice(Integer discountedPrice) {
-		this.discountedPrice = discountedPrice;
-	}
-
 	public Long getUserId() {
 		return userId;
 	}
@@ -96,34 +113,23 @@ public class OrderItem {
 		this.userId = userId;
 	}
 
-	public LocalDateTime getDeliveryDate() {
-		return deliveryDate;
-	}
-
-	public void setDeliveryDate(LocalDateTime deliveryDate) {
-		this.deliveryDate = deliveryDate;
-	}
-	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, order, price, product, quantity, userId);
+		return Objects.hash(id, order, price, product, quantity, size, userId);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-	    if (this == obj)
-	        return true;
-	    if (obj == null)
-	        return false;
-	    if (getClass() != obj.getClass())
-	        return false;
-	    OrderItem other = (OrderItem) obj;
-	    return Objects.equals(id, other.id) 
-	            && Objects.equals(order, other.order) 
-	            && Objects.equals(price, other.price)
-	            && Objects.equals(product, other.product) 
-	            && quantity == other.quantity
-	            && Objects.equals(userId, other.userId);
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderItem other = (OrderItem) obj;
+		return Objects.equals(id, other.id) && Objects.equals(order, other.order) && Objects.equals(price, other.price)
+				&& Objects.equals(product, other.product) && quantity == other.quantity
+				&& Objects.equals(size, other.size) && Objects.equals(userId, other.userId);
 	}
 
 }

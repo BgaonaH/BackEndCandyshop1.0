@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,36 +14,28 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Review {
-
-	@Id 
+	
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;	
+	private Long id;
 	
 	private String review;
 	
 	@ManyToOne
 	@JoinColumn(name="product_id")
 	@JsonIgnore
-	private Product  product;
-	
+	private Product product;
+
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
 	private LocalDateTime createdAt;
 	
-	
 	public Review() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	/**
-	 * @param id
-	 * @param review
-	 * @param product
-	 * @param user
-	 * @param createdAt
-	 */
 	public Review(Long id, String review, Product product, User user, LocalDateTime createdAt) {
 		super();
 		this.id = id;
@@ -50,6 +43,22 @@ public class Review {
 		this.product = product;
 		this.user = user;
 		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Long getId() {
@@ -75,22 +84,7 @@ public class Review {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
 	
-		
+	
+
 }

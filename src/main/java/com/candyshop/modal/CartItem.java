@@ -1,5 +1,7 @@
 package com.candyshop.modal;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -10,9 +12,9 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class CartItem {
-
+	
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@JsonIgnore
@@ -22,6 +24,7 @@ public class CartItem {
 	@ManyToOne
 	private Product product;
 	
+	
 	private int quantity;
 	
 	private Integer price;
@@ -29,21 +32,43 @@ public class CartItem {
 	private Integer discountedPrice;
 	
 	private Long userId;
-
-	public CartItem(){
-		
-	};
 	
-	public CartItem(Long id, Cart cart, Product product, int quantity, Integer price, Integer discountedPrice,
-			Long userId) {
+	public CartItem() {
+		
+	}
+
+	public CartItem(Long id, Cart cart, Product product, int quantity, Integer price, Long userId) {
 		super();
 		this.id = id;
 		this.cart = cart;
 		this.product = product;
 		this.quantity = quantity;
 		this.price = price;
-		this.discountedPrice = discountedPrice;
 		this.userId = userId;
+	}
+
+	public Integer getDiscountedPrice() {
+		return discountedPrice;
+	}
+
+	public void setDiscountedPrice(Integer discountedPrice) {
+		this.discountedPrice = discountedPrice;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 
 	public Long getId() {
@@ -70,6 +95,7 @@ public class CartItem {
 		this.product = product;
 	}
 
+	
 	public int getQuantity() {
 		return quantity;
 	}
@@ -78,30 +104,25 @@ public class CartItem {
 		this.quantity = quantity;
 	}
 
-	public Integer getPrice() {
-		return price;
-	}
-
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-	public Integer getDiscountedPrice() {
-		return discountedPrice;
-	}
-
-	public void setDiscountedPrice(Integer discountPrice) {
-		this.discountedPrice = discountPrice;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
 	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, price, product);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CartItem other = (CartItem) obj;
+		return Objects.equals(id, other.id) && Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
+				&& Objects.equals(product, other.product);
+	}
 	
 	
 }

@@ -4,14 +4,11 @@ import org.springframework.stereotype.Service;
 
 import com.candyshop.exception.ProductException;
 import com.candyshop.modal.Cart;
+import com.candyshop.modal.CartItem;
+import com.candyshop.modal.Product;
 import com.candyshop.modal.User;
 import com.candyshop.repository.CartRepository;
 import com.candyshop.request.AddItemRequest;
-import com.candyshop.modal.CartItem;
-import com.candyshop.modal.Product;
-import com.candyshop.service.CartItemService;
-import com.candyshop.service.CartService;
-import com.candyshop.service.ProductService;
 
 @Service
 public class CartServiceImplementation implements CartService{
@@ -75,7 +72,6 @@ public class CartServiceImplementation implements CartService{
 			
 			int price=req.getQuantity()*product.getDiscountedPrice();
 			cartItem.setPrice(price);
-			
 			
 			CartItem createdCartItem=cartItemService.createCartItem(cartItem);
 			cart.getCartItems().add(createdCartItem);

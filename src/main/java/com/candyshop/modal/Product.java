@@ -2,12 +2,17 @@ package com.candyshop.modal;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,6 +22,7 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Product {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -33,8 +39,8 @@ public class Product {
     @Column(name = "discounted_price")
     private int discountedPrice;
     
-    @Column(name="discount_percent")
-    private int discountPercent;
+    @Column(name="discount_persent")
+    private int discountPersent;
 
     @Column(name = "quantity")
     private int quantity;
@@ -44,6 +50,8 @@ public class Product {
 
     @Column(name = "color")
     private String color;
+
+ 
 
     @Column(name = "image_url")
     private String imageUrl;
@@ -63,23 +71,21 @@ public class Product {
     private Category category;
     
     private LocalDateTime createdAt;
-
+    
 	public Product() {
 		
 	}
 
-	
-	
-	public Product(Long id, String title, String description, int price, int discountedPrice, int discountPercent,
-			int quantity, String brand, String color, String imageUrl, List<Rating> ratings, List<Review> reviews,
-			int numRatings, Category category, LocalDateTime createdAt) {
+	public Product(Long id, String title, String description, int price, int discountedPrice, int discountPersent,
+			int quantity, String brand, String color, String imageUrl, List<Rating> ratings,
+			List<Review> reviews, int numRatings, Category category, LocalDateTime createdAt) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.price = price;
 		this.discountedPrice = discountedPrice;
-		this.discountPercent = discountPercent;
+		this.discountPersent = discountPersent;
 		this.quantity = quantity;
 		this.brand = brand;
 		this.color = color;
@@ -90,219 +96,152 @@ public class Product {
 		this.category = category;
 		this.createdAt = createdAt;
 	}
-
-
-
-	public Long getId() {
-		return id;
-	}
-
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-
-	public String getTitle() {
-		return title;
-	}
-
-
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-
-
-	public String getDescription() {
-		return description;
-	}
-
-
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-
-
-	public int getPrice() {
-		return price;
-	}
-
-
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-
-
-	public int getDiscountedPrice() {
-		return discountedPrice;
-	}
-
-
-
-	public void setDiscountedPrice(int discountedPrice) {
-		this.discountedPrice = discountedPrice;
-	}
-
-
-
-	public int getDiscountPercent() {
-		return discountPercent;
-	}
-
-
-
-	public void setDiscountPercent(int discountPercent) {
-		this.discountPercent = discountPercent;
-	}
-
-
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-
-
-	public String getBrand() {
-		return brand;
-	}
-
-
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-
-
-	public String getColor() {
-		return color;
-	}
-
-
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
-
-
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-
-
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
-
-
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-
-
-	public int getNumRatings() {
-		return numRatings;
-	}
-
-
-
-	public void setNumRatings(int numRatings) {
-		this.numRatings = numRatings;
-	}
-
-
-
-	public Category getCategory() {
-		return category;
-	}
-
-
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-
 
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-
-
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
+	public List<Rating> getRatings() {
+		return ratings;
+	}
 
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
 
+	public List<Review> getReviews() {
+		return reviews;
+	}
 
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getDiscountedPrice() {
+		return discountedPrice;
+	}
+
+	public void setDiscountedPrice(int discountedPrice) {
+		this.discountedPrice = discountedPrice;
+	}
+
+	public int getDiscountPersent() {
+		return discountPersent;
+	}
+
+	public void setDiscountPersent(int discountPersent) {
+		this.discountPersent = discountPersent;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public int getNumRatings() {
+		return numRatings;
+	}
+
+	public void setNumRatings(int numRatings) {
+		this.numRatings = numRatings;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(brand, category, color, description, discountPercent, discountedPrice, id, imageUrl,
-				numRatings, price, quantity, ratings, reviews,title);
+		return Objects.hash(brand, category, color, description, discountPersent, discountedPrice, id, imageUrl,
+				numRatings, price, quantity, ratings, reviews, title);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
-	    if (this == obj)
-	        return true;
-	    if (obj == null)
-	        return false;
-	    if (getClass() != obj.getClass())
-	        return false;
-	    Product other = (Product) obj;
-	    return Objects.equals(brand, other.brand) &&
-	           Objects.equals(category, other.category) &&
-	           Objects.equals(color, other.color) &&
-	           Objects.equals(description, other.description) &&
-	           discountPercent == other.discountPercent &&
-	           discountedPrice == other.discountedPrice &&
-	           Objects.equals(id, other.id) &&
-	           Objects.equals(imageUrl, other.imageUrl) &&
-	           numRatings == other.numRatings &&
-	           price == other.price &&
-	           quantity == other.quantity &&
-	           Objects.equals(ratings, other.ratings) &&
-	           Objects.equals(reviews, other.reviews) &&
-	           Objects.equals(title, other.title);
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(brand, other.brand) && Objects.equals(category, other.category)
+				&& Objects.equals(color, other.color) && Objects.equals(description, other.description)
+				&& discountPersent == other.discountPersent && discountedPrice == other.discountedPrice
+				&& Objects.equals(id, other.id) && Objects.equals(imageUrl, other.imageUrl)
+				&& numRatings == other.numRatings && price == other.price && quantity == other.quantity
+				&& Objects.equals(ratings, other.ratings) && Objects.equals(reviews, other.reviews)
+				&& Objects.equals(title, other.title);
 	}
 
 	
 
+   
 }

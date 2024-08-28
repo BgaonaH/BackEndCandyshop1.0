@@ -5,11 +5,11 @@ public class AuthResponse {
 	private String jwt;
 	
 	private boolean status;
-	 
+	
 	public AuthResponse() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public AuthResponse(String jwt, boolean status) {
 		super();
 		this.jwt = jwt;
@@ -31,5 +31,7 @@ public class AuthResponse {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	
+	
 
 }

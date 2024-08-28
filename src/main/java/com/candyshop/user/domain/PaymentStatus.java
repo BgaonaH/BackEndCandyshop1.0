@@ -1,6 +1,7 @@
 package com.candyshop.user.domain;
 
 public enum PaymentStatus {
+
 	PENDING,
     PROCESSING,
     COMPLETED,

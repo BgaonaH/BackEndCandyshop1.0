@@ -19,11 +19,11 @@ import com.candyshop.service.OrderService;
 
 @RestController
 @RequestMapping("/api/admin/orders")
-public class AdminOrdenController {
-
+public class AdminOrderController {
+	
 	private OrderService orderService;
 	
-	public AdminOrdenController(OrderService orderService) {
+	public AdminOrderController(OrderService orderService) {
 		this.orderService=orderService;
 	}
 	
@@ -70,4 +70,5 @@ public class AdminOrdenController {
 		System.out.println("delete method working....");
 		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
 	}
+
 }

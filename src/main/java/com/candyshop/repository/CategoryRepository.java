@@ -6,11 +6,10 @@ import org.springframework.data.repository.query.Param;
 
 import com.candyshop.modal.Category;
 
-public interface CategoryRepository extends JpaRepository<Category, Long>{
-
-	public Category findByName(String name);
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 	
-	@Query("Select c from Category c Where c.name=:name And c.parentCategory.name=:parentCategoryName")
-	public Category findByNameAndParant(@Param("name") String name,
-			@Param("parentCategoryName")String parentCategoryName);
+	public Category findByName(String name);
+
+	@Query("Select c from Category c where c.name=:name AND c.parentCategory.name=:parentCategoryName")
+	public Category findByNameAndParant(@Param("name") String name, @Param("parentCategoryName")String parentCategoryName);
 }

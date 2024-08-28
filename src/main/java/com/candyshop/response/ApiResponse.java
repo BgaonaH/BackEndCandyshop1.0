@@ -1,6 +1,7 @@
 package com.candyshop.response;
 
 public class ApiResponse {
+
 	private String message;
 	private boolean status;
 	
@@ -25,4 +26,7 @@ public class ApiResponse {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	
+	
+	
 }

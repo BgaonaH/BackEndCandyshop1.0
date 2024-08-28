@@ -1,38 +1,44 @@
 package com.candyshop.request;
 
-public class CreateProductRequest {
-	private String title;
-	
-	private String description;
-	
-	private int price;
-	
-	private int discountPrice;
-	
-	private int discountPercent;
-	
-	private int quantity;
-	
-	private String Brand ;
-	
-	private String Color;
-	
-	private String imageUrl; 
-	
-	private String topLabelCategory;
+import java.util.HashSet;
+import java.util.Set;
 
-	private String secondLabelCategory;
+import com.candyshop.modal.Category;
+
+import com.candyshop.user.domain.ProductSize;
+
+
+public class CreateProductRequest {
 	
-	private String thirdLabelCategory;
+    private String title;
+
+    private String description;
+
+    private int price;
+
+    private int discountedPrice;
+   
+    private int discountPersent;
+
+    private int quantity;
+
+    private String brand;
+
+    private String color;
+
+    private String imageUrl;
+
+    private String topLavelCategory;
+    private String secondLavelCategory;
+    private String thirdLavelCategory;
+
 
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -50,19 +56,19 @@ public class CreateProductRequest {
 	}
 
 	public int getDiscountedPrice() {
-		return discountPrice;
+		return discountedPrice;
 	}
 
 	public void setDiscountedPrice(int discountedPrice) {
-		this.discountPrice = discountedPrice;
+		this.discountedPrice = discountedPrice;
 	}
 
-	public int getDiscountPercent() {
-		return discountPercent;
+	public int getDiscountPersent() {
+		return discountPersent;
 	}
 
-	public void setDiscountPercent(int discountPercent) {
-		this.discountPercent = discountPercent;
+	public void setDiscountPersent(int discountPersent) {
+		this.discountPersent = discountPersent;
 	}
 
 	public int getQuantity() {
@@ -74,19 +80,19 @@ public class CreateProductRequest {
 	}
 
 	public String getBrand() {
-		return Brand;
+		return brand;
 	}
 
 	public void setBrand(String brand) {
-		Brand = brand;
+		this.brand = brand;
 	}
 
 	public String getColor() {
-		return Color;
+		return color;
 	}
 
 	public void setColor(String color) {
-		Color = color;
+		this.color = color;
 	}
 
 	public String getImageUrl() {
@@ -98,28 +104,30 @@ public class CreateProductRequest {
 	}
 
 	public String getTopLavelCategory() {
-		return topLabelCategory;
+		return topLavelCategory;
 	}
 
 	public void setTopLavelCategory(String topLavelCategory) {
-		this.topLabelCategory = topLavelCategory;
+		this.topLavelCategory = topLavelCategory;
 	}
 
 	public String getSecondLavelCategory() {
-		return secondLabelCategory;
+		return secondLavelCategory;
 	}
 
 	public void setSecondLavelCategory(String secondLavelCategory) {
-		this.secondLabelCategory = secondLavelCategory;
+		this.secondLavelCategory = secondLavelCategory;
 	}
 
 	public String getThirdLavelCategory() {
-		return thirdLabelCategory;
+		return thirdLavelCategory;
 	}
 
 	public void setThirdLavelCategory(String thirdLavelCategory) {
-		this.thirdLabelCategory = thirdLavelCategory;
+		this.thirdLavelCategory = thirdLavelCategory;
 	}
+
 	
-	
+    
+    
 }

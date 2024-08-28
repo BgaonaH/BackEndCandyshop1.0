@@ -1,5 +1,6 @@
 package com.candyshop.service;
 
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ import com.candyshop.modal.Product;
 import com.candyshop.repository.CategoryRepository;
 import com.candyshop.repository.ProductRepository;
 import com.candyshop.request.CreateProductRequest;
+import com.candyshop.user.domain.ProductSubCategory;
 
 @Service
 public class ProductServiceImplementation implements ProductService {
@@ -75,11 +77,10 @@ public class ProductServiceImplementation implements ProductService {
 		product.setColor(req.getColor());
 		product.setDescription(req.getDescription());
 		product.setDiscountedPrice(req.getDiscountedPrice());
-		product.setDiscountPercent(req.getDiscountPercent());
+		product.setDiscountPersent(req.getDiscountPersent());
 		product.setImageUrl(req.getImageUrl());
 		product.setBrand(req.getBrand());
 		product.setPrice(req.getPrice());
-		
 		product.setQuantity(req.getQuantity());
 		product.setCategory(thirdLevel);
 		product.setCreatedAt(LocalDateTime.now());
@@ -97,7 +98,6 @@ public class ProductServiceImplementation implements ProductService {
 		Product product=findProductById(productId);
 		
 		System.out.println("delete product "+product.getId()+" - "+productId);
-		
 //		productRepository.save(product);
 //		product.getCategory().
 		productRepository.delete(product);
@@ -153,9 +153,6 @@ public class ProductServiceImplementation implements ProductService {
 		return products;
 	}
 
-
-
-	
 	
 	@Override
 	public Page<Product> getAllProduct(String category, List<String>colors, 
@@ -202,8 +199,5 @@ public class ProductServiceImplementation implements ProductService {
 		
 		return productRepository.findTop10ByOrderByCreatedAtDesc();
 	}
-
-
-	
 
 }

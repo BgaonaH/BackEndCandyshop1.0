@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.candyshop.exception.ProductException;
 import com.candyshop.exception.UserException;
 import com.candyshop.modal.Rating;
+import com.candyshop.modal.Review;
 import com.candyshop.modal.User;
 import com.candyshop.request.RatingRequest;
 import com.candyshop.service.RatingServices;

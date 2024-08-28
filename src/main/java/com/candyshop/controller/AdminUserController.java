@@ -17,6 +17,7 @@ import com.candyshop.service.UserService;
 @RestController
 @RequestMapping("/api/admin")
 public class AdminUserController {
+	
 	@Autowired
 	private UserService userService;
 	
@@ -27,4 +28,6 @@ public class AdminUserController {
 		List<User> user=userService.findAllUsers();
 		return new ResponseEntity<>(user,HttpStatus.ACCEPTED);
 	}
+
+
 }

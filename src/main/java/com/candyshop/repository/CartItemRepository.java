@@ -8,9 +8,9 @@ import com.candyshop.modal.Cart;
 import com.candyshop.modal.CartItem;
 import com.candyshop.modal.Product;
 
-public interface CartItemRepository extends JpaRepository<CartItem, Long> {
+public interface CartItemRepository extends JpaRepository<CartItem, Long>{
 
-	@Query("SELECT ci from CartItem ci Where ci.cart=:cart And ci.product=:product And ci.userId=:userId")
-	public CartItem isCartItemExist(@Param("cart") Cart cart,@Param("product")Product product,@Param("userId")Long userId);
+	@Query("SELECT ci From CartItem ci Where ci.cart=:cart And ci.product=:product And ci.userId=:userId")
+	public CartItem isCartItemExist(@Param("cart")Cart cart,@Param("product")Product product, @Param("userId")Long userId);
 	
 }

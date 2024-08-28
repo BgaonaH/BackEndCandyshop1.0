@@ -2,8 +2,10 @@ package com.candyshop.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,7 @@ import com.candyshop.user.domain.PaymentStatus;
 
 @Service
 public class OrderServiceImplementation implements OrderService {
-
+	
 	private OrderRepository orderRepository;
 	private CartService cartService;
 	private AddressRepository addressRepository;
@@ -47,7 +49,7 @@ public class OrderServiceImplementation implements OrderService {
 		
 		shippAddress.setUser(user);
 		Address address= addressRepository.save(shippAddress);
-		user.getAddress().add(address);
+		user.getAddresses().add(address);
 		userRepository.save(user);
 		
 		Cart cart=cartService.findUserCart(user.getId());
@@ -76,6 +78,7 @@ public class OrderServiceImplementation implements OrderService {
 		createdOrder.setTotalDiscountedPrice(cart.getTotalDiscountedPrice());
 		createdOrder.setDiscounte(cart.getDiscounte());
 		createdOrder.setTotalItem(cart.getTotalItem());
+		
 		createdOrder.setShippingAddress(address);
 		createdOrder.setOrderDate(LocalDateTime.now());
 		createdOrder.setOrderStatus(OrderStatus.PENDING);
@@ -160,4 +163,5 @@ public class OrderServiceImplementation implements OrderService {
 		orderRepository.deleteById(orderId);
 		
 	}
+
 }

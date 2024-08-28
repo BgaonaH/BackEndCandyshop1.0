@@ -22,7 +22,7 @@ import com.candyshop.service.ProductService;
 @RestController
 @RequestMapping("/api/admin/products")
 public class AdminProductController {
-
+	
 	private ProductService productService;
 	
 	public AdminProductController(ProductService productService) {
@@ -85,4 +85,5 @@ public class AdminProductController {
 		ApiResponse res=new ApiResponse("products created successfully",true);
 		return new ResponseEntity<ApiResponse>(res,HttpStatus.ACCEPTED);
 	}
+
 }

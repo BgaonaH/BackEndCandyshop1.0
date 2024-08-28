@@ -7,19 +7,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.razorpay.Payment;
-import com.razorpay.PaymentLink;
-import com.razorpay.RazorpayClient;
-import com.razorpay.RazorpayException;
 import com.candyshop.exception.OrderException;
 import com.candyshop.exception.UserException;
 import com.candyshop.modal.Order;
+import com.candyshop.modal.User;
 import com.candyshop.repository.OrderRepository;
 import com.candyshop.response.ApiResponse;
 import com.candyshop.response.PaymentLinkResponse;
@@ -27,8 +25,13 @@ import com.candyshop.service.OrderService;
 import com.candyshop.service.UserService;
 import com.candyshop.user.domain.OrderStatus;
 import com.candyshop.user.domain.PaymentStatus;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.razorpay.Payment;
+import com.razorpay.PaymentLink;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
 
-// Cambiar RazorPay por Paypal//
 @RestController
 @RequestMapping("/api")
 public class PaymentController {
@@ -143,12 +146,10 @@ public class PaymentController {
 	      
 	} catch (Exception e) {
 		System.out.println("errrr payment -------- ");
-		new RedirectView("https://shopwithzosh.vercel.app/payment/failed");
+		new RedirectView("https://shopwithcandyshop.vercel.app/payment/failed");
 		throw new RazorpayException(e.getMessage());
 	}
 
   }
 
 }
-
-

@@ -7,17 +7,15 @@ import com.candyshop.modal.CartItem;
 import com.candyshop.modal.Product;
 
 public interface CartItemService {
-
+	
 	public CartItem createCartItem(CartItem cartItem);
 	
-	public CartItem updateCartItem(Long userId, Long id, CartItem carItem) throws CartItemException, UserException;
+	public CartItem updateCartItem(Long userId, Long id,CartItem cartItem) throws CartItemException, UserException;
 	
-	public CartItem isCartItemExist(Cart cart, Product product, Long userid);
+	public CartItem isCartItemExist(Cart cart,Product product,Long userId);
 	
-	public void removeCartItem(Long userid, Long caritemId) throws CartItemException, UserException;
+	public void removeCartItem(Long userId,Long cartItemId) throws CartItemException, UserException;
 	
-	public CartItem findCartItemById(Long caritemid) throws CartItemException;
-
-
+	public CartItem findCartItemById(Long cartItemId) throws CartItemException;
 	
 }

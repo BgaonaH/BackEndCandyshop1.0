@@ -17,30 +17,30 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtTokenProvider {
+	
 	private SecretKey key=Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
 	
 	public String generateToken(Authentication auth) {
-		String jwt = Jwts.builder()
+
+		String jwt=Jwts.builder()
 				.setIssuedAt(new Date())
-				.setExpiration(new Date(new Date().getTime()+846000000))
-				.claim("email", auth.getName())
-				.signWith(key).compact();
+				.setExpiration(new Date(new Date().getTime()+86400000))
+				.claim("email",auth.getName())
+				.signWith(key)
+				.compact();
 		
-		return jwt;
+		return jwt;	
 	}
 	
-	public String getEmailFromToken(String jwt) {
+	public String getEmailFromJwtToken(String jwt) {
 		jwt=jwt.substring(7);
 		
-		
-		
 		Claims claims=Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
-		
-		String email= String.valueOf(claims.get("email"));
+		String email=String.valueOf(claims.get("email"));
 		
 		return email;
-			
 	}
+	
 	public String populateAuthorities(Collection<? extends GrantedAuthority> collection) {
 		Set<String> auths=new HashSet<>();
 		
@@ -49,4 +49,5 @@ public class JwtTokenProvider {
 		}
 		return String.join(",",auths);
 	}
+
 }

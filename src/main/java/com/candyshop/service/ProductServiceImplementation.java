@@ -98,6 +98,7 @@ public class ProductServiceImplementation implements ProductService {
 		Product product=findProductById(productId);
 		
 		System.out.println("delete product "+product.getId()+" - "+productId);
+//		product.getPeso().clear();
 //		productRepository.save(product);
 //		product.getCategory().
 		productRepository.delete(product);
@@ -155,7 +156,7 @@ public class ProductServiceImplementation implements ProductService {
 
 	
 	@Override
-	public Page<Product> getAllProduct(String category, List<String>colors, 
+	public Page<Product> getAllProduct(String category, List<String>colors, //Modificar este metodo por Peso y eliminar colors
 			List<String> sizes, Integer minPrice, Integer maxPrice, 
 			Integer minDiscount,String sort, String stock, Integer pageNumber, Integer pageSize ) {
 

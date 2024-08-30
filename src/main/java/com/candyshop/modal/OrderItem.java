@@ -25,7 +25,7 @@ public class OrderItem {
 	@ManyToOne
 	private Product product;
 	
-	private String size;
+	private String peso;
 	
 	private int quantity;
 	
@@ -81,12 +81,12 @@ public class OrderItem {
 		this.product = product;
 	}
 
-	public String getSize() {
-		return size;
+	public String getPeso() {
+		return peso;
 	}
 
-	public void setSize(String size) {
-		this.size = size;
+	public void setPeso(String peso) {
+		this.peso = peso;
 	}
 
 	public int getQuantity() {
@@ -115,7 +115,7 @@ public class OrderItem {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, order, price, product, quantity, size, userId);
+		return Objects.hash(id, order, price, product, quantity, peso, userId);
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class OrderItem {
 		OrderItem other = (OrderItem) obj;
 		return Objects.equals(id, other.id) && Objects.equals(order, other.order) && Objects.equals(price, other.price)
 				&& Objects.equals(product, other.product) && quantity == other.quantity
-				&& Objects.equals(size, other.size) && Objects.equals(userId, other.userId);
+				&& Objects.equals(peso, other.peso) && Objects.equals(userId, other.userId);
 	}
 
 }

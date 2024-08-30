@@ -60,7 +60,7 @@ public class CartServiceImplementation implements CartService{
 		Cart cart=cartRepository.findByUserId(userId);
 		Product product=productService.findProductById(req.getProductId());
 		
-		CartItem isPresent=cartItemService.isCartItemExist(cart, product,userId);
+		CartItem isPresent=cartItemService.isCartItemExist(cart, product, req.getPeso(),userId);
 		
 		if(isPresent == null) {
 			CartItem cartItem = new CartItem();

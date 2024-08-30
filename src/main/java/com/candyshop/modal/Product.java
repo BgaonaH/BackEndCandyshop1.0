@@ -51,7 +51,10 @@ public class Product {
     @Column(name = "color")
     private String color;
 
- 
+    
+    
+    @Column(name = "peso")
+    private String peso;
 
     @Column(name = "image_url")
     private String imageUrl;
@@ -77,7 +80,7 @@ public class Product {
 	}
 
 	public Product(Long id, String title, String description, int price, int discountedPrice, int discountPersent,
-			int quantity, String brand, String color, String imageUrl, List<Rating> ratings,
+			int quantity, String brand, String color, String peso, String imageUrl, List<Rating> ratings,
 			List<Review> reviews, int numRatings, Category category, LocalDateTime createdAt) {
 		super();
 		this.id = id;
@@ -89,6 +92,7 @@ public class Product {
 		this.quantity = quantity;
 		this.brand = brand;
 		this.color = color;
+		this.peso = peso;
 		this.imageUrl = imageUrl;
 		this.ratings = ratings;
 		this.reviews = reviews;
@@ -215,12 +219,19 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-
 	
+	public String getPeso() {
+		return peso;
+	}
+
+	public void setPeso(String peso) {
+		this.peso = peso;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(brand, category, color, description, discountPersent, discountedPrice, id, imageUrl,
-				numRatings, price, quantity, ratings, reviews, title);
+				numRatings, price, quantity, ratings, reviews, peso, title);
 	}
 
 	@Override
@@ -238,6 +249,7 @@ public class Product {
 				&& Objects.equals(id, other.id) && Objects.equals(imageUrl, other.imageUrl)
 				&& numRatings == other.numRatings && price == other.price && quantity == other.quantity
 				&& Objects.equals(ratings, other.ratings) && Objects.equals(reviews, other.reviews)
+				&& Objects.equals(peso, other.peso)
 				&& Objects.equals(title, other.title);
 	}
 

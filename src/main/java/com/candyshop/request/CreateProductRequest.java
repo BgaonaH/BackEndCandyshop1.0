@@ -21,10 +21,10 @@ public class CreateProductRequest {
     private int discountPersent;
 
     private int quantity;
-
+    
+    private int weight;
+    
     private String brand;
-
-    private String color;
 
     private String imageUrl;
 
@@ -33,6 +33,12 @@ public class CreateProductRequest {
     private String thirdLavelCategory;
 
 
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -87,13 +93,6 @@ public class CreateProductRequest {
 		this.brand = brand;
 	}
 
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
 
 	public String getImageUrl() {
 		return imageUrl;

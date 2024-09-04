@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.candyshop.exception.ProductException;
@@ -74,7 +75,6 @@ public class ProductServiceImplementation implements ProductService {
 		
 		Product product=new Product();
 		product.setTitle(req.getTitle());
-		product.setColor(req.getColor());
 		product.setDescription(req.getDescription());
 		product.setDiscountedPrice(req.getDiscountedPrice());
 		product.setDiscountPersent(req.getDiscountPersent());
@@ -82,6 +82,7 @@ public class ProductServiceImplementation implements ProductService {
 		product.setBrand(req.getBrand());
 		product.setPrice(req.getPrice());
 		product.setQuantity(req.getQuantity());
+		product.setWeight(req.getWeight());
 		product.setCategory(thirdLevel);
 		product.setCreatedAt(LocalDateTime.now());
 		
@@ -156,42 +157,61 @@ public class ProductServiceImplementation implements ProductService {
 
 	
 	@Override
-	public Page<Product> getAllProduct(String category, List<String>colors, //Modificar este metodo por Peso y eliminar colors
-			List<String> sizes, Integer minPrice, Integer maxPrice, 
-			Integer minDiscount,String sort, String stock, Integer pageNumber, Integer pageSize ) {
+	public Page<Product> getAllProduct(String category, List<Integer> weights, Integer minPrice, Integer maxPrice, 
+	        Integer minDiscount, String sort, String stock, Integer pageNumber, Integer pageSize) {
+		// Determinar el campo de ordenación y la dirección
+	    
+		Sort.Direction sortDirection = Sort.Direction.ASC; // Valor predeterminado
+	    String sortField = "id"; // Valor predeterminado para el campo de ordenación
 
-		Pageable pageable = PageRequest.of(pageNumber, pageSize);
-		
-		List<Product> products = productRepository.filterProducts(category, minPrice, maxPrice, minDiscount, sort);
-		
-		
-		if (!colors.isEmpty()) {
-			products = products.stream()
-			        .filter(p -> colors.stream().anyMatch(c -> c.equalsIgnoreCase(p.getColor())))
-			        .collect(Collectors.toList());
-		
-		
-		} 
+	    if (sort != null) {
+	        if (sort.equalsIgnoreCase("price_asc")) {
+	            sortDirection = Sort.Direction.ASC;
+	            sortField = "price";
+	        } else if (sort.equalsIgnoreCase("price_desc")) {
+	            sortDirection = Sort.Direction.DESC;
+	            sortField = "price";
+	        } else if (sort.equalsIgnoreCase("name_asc")) {
+	            sortDirection = Sort.Direction.ASC;
+	            sortField = "name";
+	        } else if (sort.equalsIgnoreCase("name_desc")) {
+	            sortDirection = Sort.Direction.DESC;
+	            sortField = "name";
+	        }
+	        // Puedes añadir más casos si tienes más criterios de ordenación
+	    }
 
-		if(stock!=null) {
+	    Pageable pageable = PageRequest.of(pageNumber, pageSize,  Sort.by(sortDirection, sortField));
+	    
+	    List<Product> products = productRepository.filterProducts(category, minPrice, maxPrice, minDiscount, sort);
 
-			if(stock.equals("in_stock")) {
-				products=products.stream().filter(p->p.getQuantity()>0).collect(Collectors.toList());
-			}
-			else if (stock.equals("out_of_stock")) {
-				products=products.stream().filter(p->p.getQuantity()<1).collect(Collectors.toList());				
-			}
-				
-					
-		}
-		int startIndex = (int) pageable.getOffset();
-		int endIndex = Math.min(startIndex + pageable.getPageSize(), products.size());
+	    // Filtrar por peso si la lista de pesos no está vacía
+	    if (weights != null && !weights.isEmpty()) {
+	        products = products.stream()
+	                .filter(p -> weights.contains(p.getWeight()))
+	                .collect(Collectors.toList());
+	    }
 
-		List<Product> pageContent = products.subList(startIndex, endIndex);
-		Page<Product> filteredProducts = new PageImpl<>(pageContent, pageable, products.size());
-	    return filteredProducts; // If color list is empty, do nothing and return all products
-		
-		
+	    // Filtrar por stock si se especifica
+	    if (stock != null) {
+	        if (stock.equals("in_stock")) {
+	            products = products.stream()
+	                    .filter(p -> p.getQuantity() > 0)
+	                    .collect(Collectors.toList());
+	        } else if (stock.equals("out_of_stock")) {
+	            products = products.stream()
+	                    .filter(p -> p.getQuantity() < 1)
+	                    .collect(Collectors.toList());
+	        }
+	    }
+
+	    // Paginar la lista de productos
+	    int startIndex = (int) pageable.getOffset();
+	    int endIndex = Math.min(startIndex + pageable.getPageSize(), products.size());
+
+	    List<Product> pageContent = products.subList(startIndex, endIndex);
+	    Page<Product> filteredProducts = new PageImpl<>(pageContent, pageable, products.size());
+	    return filteredProducts;
 	}
 
 

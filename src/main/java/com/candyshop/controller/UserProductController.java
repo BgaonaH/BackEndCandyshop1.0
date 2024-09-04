@@ -2,6 +2,7 @@ package com.candyshop.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import com.candyshop.user.domain.ProductSubCategory;
 @RequestMapping("/api")
 public class UserProductController {
 	
+	@Autowired
 	private ProductService productService;
 	
 	public UserProductController(ProductService productService) {
@@ -29,17 +31,20 @@ public class UserProductController {
 	
 	@GetMapping("/products")
 	public ResponseEntity<Page<Product>> findProductByCategoryHandler(@RequestParam String category,
-			@RequestParam List<String>color,@RequestParam List<String> size,@RequestParam Integer minPrice,
-			@RequestParam Integer maxPrice, @RequestParam Integer minDiscount, @RequestParam String sort, 
-			@RequestParam String stock, @RequestParam Integer pageNumber,@RequestParam Integer pageSize){
+	        @RequestParam List<Integer> weights, // Cambiado a List<Integer> para weights
+	        @RequestParam Integer minPrice, @RequestParam Integer maxPrice, 
+	        @RequestParam Integer minDiscount, @RequestParam String sort, 
+	        @RequestParam String stock, @RequestParam Integer pageNumber, 
+	        @RequestParam  Integer pageSize) {
 
-		
-		Page<Product> res= productService.getAllProduct(category, color, size, minPrice, maxPrice, minDiscount, sort,stock,pageNumber,pageSize);
-		
-		System.out.println("complete products");
-		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
-		
+	    // Llamada al servicio con la nueva firma del método
+	    Page<Product> res = productService.getAllProduct(category, weights, minPrice, maxPrice, minDiscount, sort, stock, pageNumber, pageSize);
+
+	    System.out.println("complete products");
+	    return new ResponseEntity<>(res, HttpStatus.OK); // Usar HttpStatus.OK para indicar que la solicitud se procesó correctamente
 	}
+
+	
 	
 
 	

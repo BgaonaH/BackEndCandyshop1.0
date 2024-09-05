@@ -165,10 +165,10 @@ public class ProductServiceImplementation implements ProductService {
 	    String sortField = "id"; // Valor predeterminado para el campo de ordenación
 
 	    if (sort != null) {
-	        if (sort.equalsIgnoreCase("price_asc")) {
+	        if (sort.equalsIgnoreCase("price_high")) {
 	            sortDirection = Sort.Direction.ASC;
 	            sortField = "price";
-	        } else if (sort.equalsIgnoreCase("price_desc")) {
+	        } else if (sort.equalsIgnoreCase("price_low")) {
 	            sortDirection = Sort.Direction.DESC;
 	            sortField = "price";
 	        } else if (sort.equalsIgnoreCase("name_asc")) {

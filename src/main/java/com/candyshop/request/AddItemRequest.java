@@ -3,7 +3,7 @@ package com.candyshop.request;
 public class AddItemRequest {
 
 	private Long productId;
-	private String peso;
+	private String weight;
 	private int quantity;
 	private Integer price;
 	
@@ -16,11 +16,11 @@ public class AddItemRequest {
 	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
-	public String getPeso() {
-		return peso;
+	public String getWeight() {
+		return weight;
 	}
-	public String setPeso() {
-		return peso;
+	public String setWeight() {
+		return weight;
 	}
 	public int getQuantity() {
 		return quantity;

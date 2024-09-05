@@ -29,7 +29,7 @@ public class CartItem {
 	
 	private Integer price;
 	
-	private String peso;
+	private String weight;
 	
 	private Integer discountedPrice;
 	
@@ -39,12 +39,12 @@ public class CartItem {
 		
 	}
 
-	public CartItem(Long id, Cart cart, Product product, String peso, int quantity, Integer price, Long userId) {
+	public CartItem(Long id, Cart cart, Product product, String weight, int quantity, Integer price, Long userId) {
 		super();
 		this.id = id;
 		this.cart = cart;
 		this.product = product;
-		this.peso = peso;
+		this.weight = weight;
 		this.quantity = quantity;
 		this.price = price;
 		this.userId = userId;
@@ -98,12 +98,12 @@ public class CartItem {
 		this.product = product;
 	}
 	
-	public String getPeso() {
-		return peso;
+	public String getWeight() {
+		return weight;
 	}
 
-	public void setPeso(String peso) {
-		this.peso = peso;
+	public void setWeight(String weight) {
+		this.weight = weight;
 	}
 
 	public int getQuantity() {
@@ -131,7 +131,7 @@ public class CartItem {
 			return false;
 		CartItem other = (CartItem) obj;
 		return Objects.equals(id, other.id) && Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
-				&& Objects.equals(product, other.product) && Objects.equals(peso, other.peso);
+				&& Objects.equals(product, other.product) && Objects.equals(weight, other.weight);
 	}
 	
 	

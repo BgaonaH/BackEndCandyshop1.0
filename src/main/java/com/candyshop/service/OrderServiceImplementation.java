@@ -61,7 +61,7 @@ public class OrderServiceImplementation implements OrderService {
 			orderItem.setPrice(item.getPrice());
 			orderItem.setProduct(item.getProduct());
 			orderItem.setQuantity(item.getQuantity());
-			orderItem.setPeso(item.getPeso());
+			orderItem.setWeight(item.getWeight());
 			orderItem.setUserId(item.getUserId());
 			orderItem.setDiscountedPrice(item.getDiscountedPrice());
 			

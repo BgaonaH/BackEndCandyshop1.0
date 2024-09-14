@@ -9,6 +9,7 @@ import com.candyshop.exception.ProductException;
 import com.candyshop.modal.Product;
 import com.candyshop.modal.Rating;
 import com.candyshop.modal.User;
+import com.candyshop.repository.ProductRepository;
 import com.candyshop.repository.RatingRepository;
 import com.candyshop.request.RatingRequest;
 
@@ -34,6 +35,9 @@ public class RatingServiceImplementation implements RatingServices{
 		rating.setRating(req.getRating());
 		rating.setCreatedAt(LocalDateTime.now());
 		
+		product.setNumRatings(product.getNumRatings() + 1);
+		productService.updateProduct(product.getId(), product);
+
 		return ratingRepository.save(rating);
 	}
 
